@@ -6,11 +6,11 @@ Conversor genérico feito para converter o texto dos dados de Chapecó em .CSV p
   <li>Baixar o <a class="js-navigation-open" title="TxtTOCSVObservatorio.exe" id="7003021866aeb19adba87a39472bf741-a2579beb9d115585c1a928bd021e49f034502d60" 
 href="https://github.com/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/releases/tag/1.0.0">TxtTOCSVObservatorio.exe</a></li>
   
- <img src="/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/Manter.png?raw=true" alt="Manter.png">
+ <img src="https://github.com/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/Manter.png?raw=true" alt="Manter.png">
  
- <img src="/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/Protegeu.png?raw=true" alt="Protegeu.png">
+ <img src="https://github.com/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/Protegeu.png?raw=true" alt="Protegeu.png">
  
- <img src="/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/MesmoAssim.png?raw=true" alt="MesmoAssim.png">
+ <img src="https://github.com/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/MesmoAssim.png?raw=true" alt="MesmoAssim.png">
   
   <li>Pegar os <a class="js-navigation-open" title="Documentos de exemplo 2017 a 2019" id="4330253697ef87d348ab8fc1809bdf9b-3d04e5b56f6ba60ced72e74bf4d42af9f3b4d92f" href="https://github.com/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/tree/master/Documentos%20de%20exemplo%202017%20a%202019">PDFs</a> de dados de sua prefeitura e  selecionar tudo (Ctrl + A), copiar (Ctrl + C) e colar e um novo documento de texto.txt</li>
   
@@ -24,9 +24,9 @@ cirurgias na rede pública do Município de Chapecó-SC, e dá outras providênc
 </blockquote>
   <li>Clique em "Abrir arquivo" e após selecionar o arquivo, verá o resultado de texto onde o sistema colocou automaticamente os ";".</li>
   
-  <img src="/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/AbrirArquivo.png?raw=true" alt="AbrirArquivo.png">
+  <img src="https://github.com/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/AbrirArquivo.png?raw=true" alt="AbrirArquivo.png">
   
-  <img src="/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/Salvar.png?raw=true" alt="Salvar.png">
+  <img src="https://github.com/FabricioCoimbra/ObservatorioSocialChapeco_Conversor/blob/master/Tutorial/Salvar.png?raw=true" alt="Salvar.png">
   
 </ol>
 
