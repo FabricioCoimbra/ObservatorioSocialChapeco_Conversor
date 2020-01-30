@@ -1,13 +1,13 @@
 # TxtToCSVObservatorioSocialChapeco
 <p>Conversor genérico feito para converter o texto dos dados de Chapecó em .CSV para gerar estatísticas.</p>
 
-<a title="Página Inicial" href="http://chapeco.osbrasil.org.br">
+<a href="http://chapeco.osbrasil.org.br/">
   <img src="http://chapeco.osbrasil.org.br/wp-content/uploads/sites/57/2019/06/cropped-OSB_LOGO_OFICIAL_Chapecó.png"
      alt="Observatório Social do Brasil" style="max-height:73px;" class="img-responsive"> 	
   <span class="hidden">Observatório Social de Chapecó</span>
 </a>
-<a title="Unidos contra a corrupção" href="http://unidoscontraacorrupcao.org.br/">
-						<img src="http://unidoscontraacorrupcao.org.br/wp-content/themes/unidoscontraacorrupcao/assets/img/logo-header.png" alt="Observatório Social do Brasil" style="max-height:73px;" class="img-responsive"> 						
+<a href="http://unidoscontraacorrupcao.org.br/">
+						<img src="http://unidoscontraacorrupcao.org.br/wp-content/themes/unidoscontraacorrupcao/assets/img/logo-header.png" alt="Unidos contra a corrupção" style="max-height:73px;" class="img-responsive"> 						
                             <span class="hidden">Unidos contra a corrupção</span>
                         </a> 
                         
