@@ -105,7 +105,7 @@ begin
     Application.ProcessMessages;
     if (Length(Linha) > 0) and (String('0123456789').Contains(Linha.Chars[0])) then
     begin //inicia nova linha do CSV
-      if InicioRegistro and Dados.Contains(FDelimitador) then
+      if InicioRegistro then
       begin
         LimparLixoDosDados;
         ProcessarDados;
