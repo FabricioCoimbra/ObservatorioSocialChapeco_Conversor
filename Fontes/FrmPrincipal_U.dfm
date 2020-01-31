@@ -1423,7 +1423,7 @@ object FrmPrincipal: TFrmPrincipal
       Height = 22
       Anchors = [akTop, akRight]
       MaxValue = 500
-      MinValue = 1
+      MinValue = 0
       TabOrder = 4
       Value = 1
     end
@@ -1508,8 +1508,6 @@ object FrmPrincipal: TFrmPrincipal
     ScrollBars = ssBoth
     TabOrder = 1
     WordWrap = False
-    ExplicitTop = 193
-    ExplicitHeight = 434
   end
   object ActivityIndicator1: TActivityIndicator
     Left = 151

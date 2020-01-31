@@ -18,7 +18,8 @@ type
     FPalavrasEsquerda: Integer;
 
     procedure ProcessarDados;
-    procedure QuebrarLinha(Posicao: Integer);
+    procedure ConfigurarDataString;
+    procedure LimparLixoDosDados;
 
     function QuebrarNome(Posicao: Integer): Integer;
     function QuebrarProximaPalavra(Posicao: Integer): Integer;
@@ -65,36 +66,68 @@ begin
   FreeAndNil(Data);
 end;
 
+procedure TControllerConversor.ConfigurarDataString;
+begin
+  Data.Clear;
+  Data.LoadFromFile(DM.OpenDialog.FileName, TEncoding.UTF8);
+  Data.Clear;
+  Dados := EmptyStr;
+  Application.ProcessMessages;
+end;
+
+procedure TControllerConversor.LimparLixoDosDados;
+var
+  I: Integer;
+begin
+  Dados := StringReplace(Dados, ';', '.', [rfReplaceAll]);
+  Dados := StringReplace(Dados, FDelimitador, NewDelimitador, [rfReplaceAll]);
+
+  for I := 0 to 3 do
+    Dados := StringReplace(Dados, '  ', ' ', [rfReplaceAll]);
+end;
+
 function TControllerConversor.LerArquivo: TStringList;
 var
   Linha: string;
   I: Integer;
+  InicioRegistro: Boolean;
+  DadosBrutos: TStringList;
 begin
-  Data.Clear;
-  Application.ProcessMessages;
-  Data.LoadFromFile(DM.OpenDialog.FileName, TEncoding.UTF8);
-  Dados := '';
-  for linha in Data do
+  DadosBrutos := TStringList.Create;
+  DadosBrutos.LoadFromFile(DM.OpenDialog.FileName, TEncoding.UTF8);
+  InicioRegistro := False;
+
+  ConfigurarDataString;
+
+  for I := 0 to Pred(DadosBrutos.Count) do
   begin
-    Dados := Dados + Linha;
+    Linha := DadosBrutos[I];
+    Application.ProcessMessages;
+    if (Length(Linha) > 0) and (String('0123456789').Contains(Linha.Chars[0])) then
+    begin //inicia nova linha do CSV
+      if InicioRegistro and Dados.Contains(FDelimitador) then
+      begin
+        LimparLixoDosDados;
+        ProcessarDados;
+
+        Dados := StringReplace(Dados, NewDelimitador, FDelimitador, [rfReplaceAll]);
+        Data.Add(Dados);
+      end;
+      InicioRegistro := True;
+      Dados := EmptyStr;
+    end;
+
+    if InicioRegistro then
+      Dados := Dados + ' ' + Linha + ' ';
   end;
-  Data.Clear;
-
-  Dados := StringReplace(Dados, ';', '.', [rfReplaceAll]);
-  Dados := StringReplace(Dados, FDelimitador, NewDelimitador, [rfReplaceAll]);
-  Application.ProcessMessages;
-  ProcessarDados;
-
-  Dados := StringReplace(Dados, NewDelimitador, FDelimitador, [rfReplaceAll]);
-  Data.Add(Dados);
-
-  Result := Data;
 
   for I := Pred(Data.Count) downto 0 do
   begin
-    if Trim(Data[I]) = EmptyStr then
+    if Data[I].Trim = EmptyStr then
       Data.Delete(I);
   end;
+  DadosBrutos.Free;
+  Result := Data;
 end;
 
 procedure TControllerConversor.ProcessarDados;
@@ -102,7 +135,7 @@ var
   UltimaPosicao,
   LengthDados,
   I, J: Integer;
-
+  PalavrasEsquerda: string;
   PosEsquerda,
   PosDireita: Integer;
 begin
@@ -115,13 +148,21 @@ begin
     begin
       UltimaPosicao := I;
       Insert(';', Dados, I);
-      QuebrarLinha(I);
       PosDireita := QuebrarNome(I+5);
       PosEsquerda := I;
-      for J := 0 to FPalavrasDireita do
+      for J := 0 to Pred(FPalavrasDireita) do
         PosDireita := QuebrarProximaPalavra(PosDireita + 2);
-      for J := 0 to FPalavrasEsquerda do
-        PosEsquerda := QuebrarPalavraAnterior(PosEsquerda - 1);
+      for J := 0 to Pred(FPalavrasEsquerda) do
+        PosEsquerda := QuebrarPalavraAnterior(PosEsquerda);
+
+      // garantir que o nome ficará smepre na mesma coluna;
+      for J := 0 to Pred(FPalavrasEsquerda) do
+      begin
+        PalavrasEsquerda := Copy(Dados, 0, Pos('@', Dados));
+        if PalavrasEsquerda.CountChar(';') < FPalavrasEsquerda then
+          Insert(';', Dados, Pos('@', Dados));
+      end;
+
     end;
   end;
 end;
@@ -151,7 +192,7 @@ var
 begin
   Result := Posicao;
   PosAtual := Posicao;
-  while (PosAtual > 0) do
+  while (PosAtual > 1) do
   begin
     if (Dados[PosAtual] = ' ') then
     begin
@@ -160,22 +201,6 @@ begin
     end;
    PosAtual := Pred(PosAtual);
   end;
-end;
-
-procedure TControllerConversor.QuebrarLinha(Posicao: Integer);
-var
-  PosicaoDelimitador: Integer;
-begin
-  PosicaoDelimitador := Posicao;
-  while (PosicaoDelimitador > 0) and (Dados[PosicaoDelimitador] <> '.' ) do
-  begin
-    PosicaoDelimitador := Pred(PosicaoDelimitador);
-  end;
-
-  if (PosicaoDelimitador > 0) then
-    Inc(PosicaoDelimitador);
-
-  Insert(sLineBreak, Dados, PosicaoDelimitador);
 end;
 
 function TControllerConversor.QuebrarNome(Posicao: Integer): Integer;
